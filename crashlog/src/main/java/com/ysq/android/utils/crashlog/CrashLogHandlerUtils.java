@@ -115,7 +115,10 @@ public class CrashLogHandlerUtils implements UncaughtExceptionHandler {
 	/**
 	 * 启动异常退出log捕捉
 	 */
-	public void start() {
+	public void start() throws Exception {
+		if (mSaveDir == null) {
+			throw new Exception("设置的log保存路径不存在");
+		}
 		// 获取系统默认的UncaughtException处理器
 		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 		// 设置该CrashHandler为程序的默认处理器
